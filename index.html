@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amik Depati Parbo Kerinci — Profil Kampus</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      /* Hamburger hanya tampil di mobile */
+      #burgerBtn {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--white);
+        font-size: 1.5rem;
+        cursor: pointer;
+        margin-left: auto;
+        padding: 4px 10px;
+      }
+
+      @media (max-width: 600px) {
+        #burgerBtn {
+          display: block;
+        }
+
+        .nav-inner {
+          flex-direction: column;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.4s ease;
+          padding: 0 8px;
+        }
+
+        .nav-inner.nav-open {
+          max-height: 400px;
+          padding-bottom: 8px;
+        }
+
+        nav a {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header>
+      <div class="header-inner">
+        <a
+          class="logo-wrap"
+          href="#"
+          onclick="
+            loadPage('home.html', document.querySelector('[data-key=home]'));
+            return false;
+          "
+        >
+          <img
+            src="images/amik-depati-karbo-kerinci.png"
+            alt="Logo Amik Depati Parbo Kerinci"
+            class="logo-img"
+            onerror="
+              this.src =
+                'https://ui-avatars.com/api/?name=ADP&background=1a3c6e&color=e8a020&size=128&font-size=0.4&bold=true'
+            "
+          />
+          <div class="logo-text">
+            <h1>Amik Depati Parbo Kerinci</h1>
+            <span>Unggul · Inovatif · Berkarakter</span>
+          </div>
+        </a>
+        <button id="burgerBtn" aria-label="Buka menu">☰</button>
+      </div>
+
+      <!-- Banner animasi -->
+      <div class="banner-strip">
+        🎓 Penerimaan Mahasiswa Baru 2026/2027 &nbsp;|&nbsp; Daftar Sekarang dan
+        Raih Beasiswa Unggulan! &nbsp;|&nbsp; 📞 Hubungi kami: (62) 85369194111
+      </div>
+
+      <!-- Navigasi -->
+      <nav>
+        <div class="nav-inner">
+          <a
+            href="#"
+            data-key="home"
+            class="active"
+            onclick="
+              loadPage('home.html', this);
+              return false;
+            "
+          >
+            <span class="nav-icon">🏠</span> Home
+          </a>
+          <a
+            href="#"
+            data-key="profil"
+            onclick="
+              loadPage('profil.html', this);
+              return false;
+            "
+          >
+            <span class="nav-icon">🏛️</span> Profil
+          </a>
+          <a
+            href="#"
+            data-key="prodi"
+            onclick="
+              loadPage('prodi.html', this);
+              return false;
+            "
+          >
+            <span class="nav-icon">📚</span> Program Studi
+          </a>
+          <a
+            href="#"
+            data-key="galeri"
+            onclick="
+              loadPage('galeri.html', this);
+              return false;
+            "
+          >
+            <span class="nav-icon">🖼️</span> Galeri
+          </a>
+          <a
+            href="#"
+            data-key="kontak"
+            onclick="
+              loadPage('kontak.html', this);
+              return false;
+            "
+          >
+            <span class="nav-icon">📬</span> Kontak
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ===== IFRAME KONTEN ===== -->
+    <main class="main-wrapper">
+      <iframe
+        id="mainFrame"
+        class="iframe-container"
+        src="home.html"
+        title="Konten Halaman"
+        loading="lazy"
+        allowfullscreen
+      >
+      </iframe>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-name">Amik Depati Parbo Kerinci</div>
+          <p>
+            Mencetak generasi unggul yang berkarakter, inovatif, dan siap
+            bersaing di era global.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-btn" title="Facebook">f</a>
+            <a href="#" class="social-btn" title="Instagram">in</a>
+            <a href="#" class="social-btn" title="YouTube">▶</a>
+            <a href="#" class="social-btn" title="Twitter/X">𝕏</a>
+            <a href="#" class="social-btn" title="LinkedIn">Li</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Kontak Kami</h4>
+          <address>
+            Jl. Pendidikan No. 1<br />
+            Kota Nusantara, 12345<br />
+            Indonesia<br /><br />
+            📞 (021) 555-0199<br />
+            ✉️ info@uninusantara.ac.id
+          </address>
+        </div>
+
+        <div class="footer-col">
+          <h4>Tautan Cepat</h4>
+          <p>
+            <a
+              href="#"
+              onclick="
+                loadPage('home.html', null);
+                return false;
+              "
+              style="color: rgba(255, 255, 255, 0.65); text-decoration: none"
+              >🏠 Home</a
+            ><br />
+            <a
+              href="#"
+              onclick="
+                loadPage('profil.html', null);
+                return false;
+              "
+              style="color: rgba(255, 255, 255, 0.65); text-decoration: none"
+              >🏛️ Profil Kampus</a
+            ><br />
+            <a
+              href="#"
+              onclick="
+                loadPage('prodi.html', null);
+                return false;
+              "
+              style="color: rgba(255, 255, 255, 0.65); text-decoration: none"
+              >📚 Program Studi</a
+            ><br />
+            <a
+              href="#"
+              onclick="
+                loadPage('galeri.html', null);
+                return false;
+              "
+              style="color: rgba(255, 255, 255, 0.65); text-decoration: none"
+              >🖼️ Galeri</a
+            ><br />
+            <a
+              href="#"
+              onclick="
+                loadPage('kontak.html', null);
+                return false;
+              "
+              style="color: rgba(255, 255, 255, 0.65); text-decoration: none"
+              >📬 Kontak</a
+            >
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; 2025 Amik Depati Parbo Kerinci. Seluruh hak cipta dilindungi
+        undang-undang.
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

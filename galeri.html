@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galeri — Amik Depati Parbo</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --primary: #1a3c6e;
+        --secondary: #e8a020;
+        --accent: #2e86de;
+        --dark: #0d1b2a;
+        --light: #f4f7fb;
+        --white: #fff;
+        --radius: 14px;
+        --shadow: 0 6px 30px rgba(26, 60, 110, 0.12);
+        --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        font-family: "Segoe UI", system-ui, sans-serif;
+        background: var(--light);
+        color: var(--dark);
+        overflow-x: hidden;
+      }
+
+      /* ===== PAGE HERO ===== */
+      .page-hero {
+        background: linear-gradient(135deg, #8e44ad 0%, #1a3c6e 100%);
+        color: var(--white);
+        padding: 60px 24px;
+        text-align: center;
+        animation: heroIn 0.7s ease both;
+      }
+
+      @keyframes heroIn {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .page-hero h2 {
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        font-weight: 900;
+        margin-bottom: 10px;
+      }
+      .page-hero h2 span {
+        color: var(--secondary);
+      }
+      .page-hero p {
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .breadcrumb {
+        font-size: 0.8rem;
+        color: var(--secondary);
+        margin-bottom: 14px;
+        letter-spacing: 0.5px;
+      }
+
+      /* ===== FILTER BAR ===== */
+      .filter-bar {
+        background: var(--white);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+        padding: 20px 24px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        animation: slideDown 0.5s ease both;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .filter-bar p {
+        font-size: 0.83rem;
+        color: #888;
+        margin-bottom: 12px;
+      }
+
+      .filter-btns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .filter-btn {
+        padding: 9px 22px;
+        border-radius: 50px;
+        border: 2px solid #ddd;
+        background: none;
+        cursor: pointer;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #555;
+        transition: all var(--transition);
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: var(--white);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 14px rgba(26, 60, 110, 0.25);
+      }
+
+      /* ===== GALLERY GRID ===== */
+      .gallery-section {
+        padding: 48px 24px;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      /* Item animation */
+      .gallery-item {
+        border-radius: var(--radius);
+        overflow: hidden;
+        position: relative;
+        box-shadow: var(--shadow);
+        cursor: pointer;
+        animation: itemFadeUp 0.5s ease both;
+      }
+
+      @keyframes itemFadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .gallery-item:nth-child(1) {
+        animation-delay: 0.05s;
+      }
+      .gallery-item:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+      .gallery-item:nth-child(3) {
+        animation-delay: 0.15s;
+      }
+      .gallery-item:nth-child(4) {
+        animation-delay: 0.2s;
+      }
+      .gallery-item:nth-child(5) {
+        animation-delay: 0.25s;
+      }
+      .gallery-item:nth-child(6) {
+        animation-delay: 0.3s;
+      }
+      .gallery-item:nth-child(7) {
+        animation-delay: 0.35s;
+      }
+      .gallery-item:nth-child(8) {
+        animation-delay: 0.4s;
+      }
+      .gallery-item:nth-child(9) {
+        animation-delay: 0.45s;
+      }
+
+      /* Image Zoom on hover */
+      .gallery-img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .gallery-item:hover .gallery-img {
+        transform: scale(1.1);
+      }
+
+      /* Placeholder image */
+      .gallery-placeholder {
+        width: 100%;
+        height: 220px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 3.5rem;
+        gap: 8px;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .gallery-item:hover .gallery-placeholder {
+        transform: scale(1.1);
+      }
+
+      .gallery-placeholder span {
+        font-size: 0.82rem;
+        letter-spacing: 1px;
+        opacity: 0.85;
+      }
+
+      /* Overlay */
+      .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(13, 27, 42, 0.85) 0%,
+          transparent 60%
+        );
+        opacity: 0;
+        transition: opacity var(--transition);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 18px;
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+
+      .overlay-title {
+        color: var(--white);
+        font-size: 0.97rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+
+      .overlay-cat {
+        display: inline-block;
+        background: var(--secondary);
+        color: var(--dark);
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 50px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* Category badge on card */
+      .cat-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(26, 60, 110, 0.75);
+        backdrop-filter: blur(4px);
+        color: var(--white);
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 50px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* ===== HIDDEN ITEMS ===== */
+      .gallery-item.hidden {
+        display: none;
+      }
+
+      /* ===== LIGHTBOX ===== */
+      .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.92);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        animation: lbFadeIn 0.3s ease both;
+      }
+
+      .lightbox.open {
+        display: flex;
+      }
+
+      @keyframes lbFadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .lb-content {
+        position: relative;
+        max-width: 90vw;
+        max-height: 90vh;
+        text-align: center;
+        animation: lbZoom 0.3s ease both;
+      }
+
+      @keyframes lbZoom {
+        from {
+          transform: scale(0.85);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .lb-img {
+        max-width: 100%;
+        max-height: 75vh;
+        border-radius: 10px;
+        display: block;
+        margin: 0 auto;
+      }
+
+      .lb-placeholder {
+        width: 500px;
+        max-width: 90vw;
+        height: 320px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 5rem;
+        gap: 14px;
+      }
+
+      .lb-placeholder span {
+        font-size: 1rem;
+        opacity: 0.8;
+      }
+
+      .lb-title {
+        color: var(--white);
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-top: 14px;
+      }
+
+      .lb-close {
+        position: absolute;
+        top: -44px;
+        right: 0;
+        background: none;
+        border: none;
+        color: var(--white);
+        font-size: 2rem;
+        cursor: pointer;
+        line-height: 1;
+        transition: transform 0.2s;
+      }
+
+      .lb-close:hover {
+        transform: rotate(90deg) scale(1.2);
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 600px) {
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .gallery-img,
+        .gallery-placeholder {
+          height: 160px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+      <div class="breadcrumb">🏠 Home › Galeri</div>
+      <h2>Galeri <span>Kampus</span></h2>
+      <p>
+        Dokumentasi kegiatan, fasilitas, dan momen berharga di Amik Depati Parbo Kerinci.
+      </p>
+    </div>
+
+    <!-- FILTER BAR (HOTS: Filter by kategori) -->
+    <div class="filter-bar">
+      <p>Filter berdasarkan kategori:</p>
+      <div class="filter-btns">
+        <button class="filter-btn active" onclick="filterGallery('all', this)">
+          🌐 Semua
+        </button>
+        <button class="filter-btn" onclick="filterGallery('kampus', this)">
+          🏛️ Kampus
+        </button>
+        <button class="filter-btn" onclick="filterGallery('lab', this)">
+          🔬 Laboratorium
+        </button>
+        <button class="filter-btn" onclick="filterGallery('kegiatan', this)">
+          🎉 Kegiatan Mahasiswa
+        </button>
+      </div>
+    </div>
+
+    <!-- GALLERY GRID -->
+    <section class="gallery-section">
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- 1 -->
+        <div
+          class="gallery-item"
+          data-cat="kampus"
+          onclick="openLightbox(this)"
+        >
+          <img
+            class="gallery-img"
+            src="images/ID.SPN.UNIV.ADP_2.webp"
+            alt="Gedung Rektorat"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div
+            class="gallery-placeholder"
+            style="
+              display: none;
+              background: linear-gradient(135deg, #1a3c6e, #2e86de);
+            "
+          >
+            🏛️ <span>Gedung Rektorat</span>
+          </div>
+          <div class="gallery-overlay">
+            <div class="overlay-title">Gedung Rektorat Utama</div>
+            <span class="overlay-cat">Kampus</span>
+          </div>
+          <span class="cat-badge">🏛️ Kampus</span>
+        </div>
+
+        <!-- 2 -->
+        <div
+          class="gallery-item"
+          data-cat="kampus"
+          onclick="openLightbox(this)"
+        >
+        <img
+            class="gallery-img"
+            src="images/ID.SPN.UNIV.ADP_2.webp"
+            alt="Gedung Rektorat"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div
+            class="gallery-placeholder"
+            style="background: linear-gradient(135deg, #16a085, #1abc9c)"
+          >
+            📚 <span>Perpustakaan Pusat</span>
+          </div>
+          <div class="gallery-overlay">
+            <div class="overlay-title">Perpustakaan Pusat Kampus</div>
+            <span class="overlay-cat">Kampus</span>
+          </div>
+          <span class="cat-badge">🏛️ Kampus</span>
+        </div>
+
+        <!-- 3 -->
+        <div
+          class="gallery-item"
+          data-cat="kampus"
+          onclick="openLightbox(this)"
+        >
+         <img
+            class="gallery-img"
+            src="images/IMG-20250929-WA0070.jpg"
+            alt="Gedung Rektorat"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div
+            class="gallery-placeholder"
+            style="background: linear-gradient(135deg, #27ae60, #2ecc71)"
+          >
+            🌿 <span>Taman Kampus</span>
+          </div>
+          <div class="gallery-overlay">
+            <div class="overlay-title">Taman Hijau Kampus</div>
+            <span class="overlay-cat">Kampus</span>
+          </div>
+          <span class="cat-badge">🏛️ Kampus</span>
+        </div>
+
+        <!-- 4 -->
+        <div class="gallery-item" data-cat="lab" onclick="openLightbox(this)">
+          <img
+            class="gallery-img"
+            src="images/IMG-20250701-WA0022.jpg"
+            alt="Laboratorium Komputer"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div
+            class="gallery-placeholder"
+            style="
+              display: none;
+              background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            "
+          >
+            🖥️ <span>Lab Komputer</span>
+          </div>
+          <div class="gallery-overlay">
+            <div class="overlay-title">Laboratorium Komputer TI</div>
+            <span class="overlay-cat">Laboratorium</span>
+          </div>
+          <span class="cat-badge">🔬 Lab</span>
+        </div>
+        <!-- 7 -->
+        <div
+          class="gallery-item"
+          data-cat="kegiatan"
+          onclick="openLightbox(this)"
+        >
+         <img
+            class="gallery-img"
+            src="images/IMG-20250702-WA0035.jpg"
+            alt="Gedung Rektorat"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div
+            class="gallery-placeholder"
+            style="background: linear-gradient(135deg, #e8a020, #f5c842)"
+          >
+            🎓 <span>Wisuda 2024</span>
+          </div>
+          <div class="gallery-overlay">
+            <div class="overlay-title">Upacara Wisuda Angkatan 2024</div>
+            <span class="overlay-cat">Kegiatan</span>
+          </div>
+          <span class="cat-badge">🎉 Kegiatan</span>
+        </div>
+
+        <!-- 8 -->
+        <div
+          class="gallery-item"
+          data-cat="kegiatan"
+          onclick="openLightbox(this)"
+        >
+         <img
+            class="gallery-img"
+            src="images/ID.SPN.UNIV.ADP_2.webp"
+            alt="Gedung Rektorat"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div
+            class="gallery-placeholder"
+            style="background: linear-gradient(135deg, #2980b9, #3498db)"
+          >
+            🏆 <span>Olimpiade Mahasiswa</span>
+          </div>
+          <div class="gallery-overlay">
+            <div class="overlay-title">Olimpiade Nasional Mahasiswa</div>
+            <span class="overlay-cat">Kegiatan</span>
+          </div>
+          <span class="cat-badge">🎉 Kegiatan</span>
+        </div>
+
+        <!-- 9 -->
+        <div
+          class="gallery-item"
+          data-cat="kegiatan"
+          onclick="openLightbox(this)"
+        >
+         <img
+            class="gallery-img"
+            src="images/ID.SPN.UNIV.ADP_2.webp"
+            alt="Gedung Rektorat"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div
+            class="gallery-placeholder"
+            style="background: linear-gradient(135deg, #1a3c6e, #8e44ad)"
+          >
+            🎵 <span>Festival Seni</span>
+          </div>
+          <div class="gallery-overlay">
+            <div class="overlay-title">Festival Seni &amp; Budaya Kampus</div>
+            <span class="overlay-cat">Kegiatan</span>
+          </div>
+          <span class="cat-badge">🎉 Kegiatan</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+      <div class="lb-content" id="lbContent">
+        <button
+          class="lb-close"
+          onclick="document.getElementById('lightbox').classList.remove('open')"
+        >
+          ✕
+        </button>
+        <div id="lbInner"></div>
+        <div class="lb-title" id="lbTitle"></div>
+      </div>
+    </div>
+
+    <script>
+      /* ---- Filter Galeri ---- */
+      function filterGallery(cat, btn) {
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const items = document.querySelectorAll(".gallery-item");
+        items.forEach((item, i) => {
+          const match = cat === "all" || item.dataset.cat === cat;
+          item.classList.toggle("hidden", !match);
+
+          if (match) {
+            /* re-trigger animation */
+            item.style.animation = "none";
+            item.offsetHeight; // reflow
+            item.style.animation = `itemFadeUp .5s ease ${i * 0.06}s both`;
+          }
+        });
+      }
+
+      /* ---- Lightbox ---- */
+      function openLightbox(item) {
+        const imgEl = item.querySelector(".gallery-img");
+        const plEl = item.querySelector(".gallery-placeholder");
+        const title = item.querySelector(".overlay-title").textContent;
+
+        const inner = document.getElementById("lbInner");
+        inner.innerHTML = "";
+
+        if (imgEl && imgEl.style.display !== "none") {
+          const img = document.createElement("img");
+          img.src = imgEl.src;
+          img.alt = title;
+          img.className = "lb-img";
+          inner.appendChild(img);
+        } else if (plEl) {
+          const clone = plEl.cloneNode(true);
+          clone.className = "lb-placeholder";
+          clone.style.display = "flex";
+          clone.style.background = plEl.style.background;
+          inner.appendChild(clone);
+        }
+
+        document.getElementById("lbTitle").textContent = title;
+        document.getElementById("lightbox").classList.add("open");
+      }
+
+      function closeLightbox(e) {
+        if (e.target === document.getElementById("lightbox")) {
+          document.getElementById("lightbox").classList.remove("open");
+        }
+      }
+
+      /* Close on Escape */
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape")
+          document.getElementById("lightbox").classList.remove("open");
+      });
+    </script>
+  </body>
+</html>

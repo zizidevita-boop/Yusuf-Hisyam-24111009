@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home — Amik Depati Parbo Kerinci</title>
+    <style>
+      /* ---- Reset ---- */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --primary: #1a3c6e;
+        --secondary: #e8a020;
+        --accent: #2e86de;
+        --dark: #0d1b2a;
+        --light: #f4f7fb;
+        --white: #fff;
+        --radius: 14px;
+        --shadow: 0 6px 30px rgba(26, 60, 110, 0.13);
+        --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        font-family: "Segoe UI", system-ui, sans-serif;
+        background: var(--light);
+        color: var(--dark);
+        overflow-x: hidden;
+      }
+
+      /* ===== HERO ===== */
+      .hero {
+        position: relative;
+        height: 520px;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          #0d2b55 60%,
+          #112040 100%
+        );
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          url("images/kampus.jpg") center/cover no-repeat,
+          linear-gradient(135deg, var(--primary), #0d2b55);
+        opacity: 0.35;
+        animation: heroBgZoom 12s ease-in-out infinite alternate;
+      }
+
+      @keyframes heroBgZoom {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.08);
+        }
+      }
+
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(13, 27, 42, 0.2) 0%,
+          rgba(13, 27, 42, 0.75) 100%
+        );
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 20px;
+        color: var(--white);
+        animation: heroFadeIn 1s ease 0.2s both;
+      }
+
+      @keyframes heroFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-badge {
+        display: inline-block;
+        background: var(--secondary);
+        color: var(--dark);
+        padding: 5px 18px;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+        animation: badgeBounce 0.6s ease 0.8s both;
+      }
+
+      @keyframes badgeBounce {
+        from {
+          opacity: 0;
+          transform: scale(0.7);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .hero-content h2 {
+        font-size: clamp(1.8rem, 5vw, 3.2rem);
+        font-weight: 900;
+        line-height: 1.2;
+        margin-bottom: 16px;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      .hero-content h2 span {
+        color: var(--secondary);
+      }
+
+      .hero-content p {
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        color: rgba(255, 255, 255, 0.85);
+        max-width: 600px;
+        line-height: 1.7;
+        margin-bottom: 28px;
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .btn {
+        padding: 13px 30px;
+        border-radius: 50px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        transition:
+          transform var(--transition),
+          box-shadow var(--transition);
+      }
+
+      .btn-primary {
+        background: var(--secondary);
+        color: var(--dark);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--white);
+        border: 2px solid rgba(255, 255, 255, 0.7);
+      }
+
+      .btn:hover {
+        transform: translateY(-4px) scale(1.04);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+      }
+
+      /* ===== STATS ===== */
+      .stats-bar {
+        background: var(--white);
+        box-shadow: var(--shadow);
+      }
+
+      .stats-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 26px 20px;
+        border-right: 1px solid #eee;
+        animation: statSlideUp 0.6s ease both;
+      }
+
+      .stat-item:last-child {
+        border-right: none;
+      }
+
+      @keyframes statSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .stat-item:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .stat-item:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .stat-item:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .stat-item:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+
+      .stat-number {
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: var(--primary);
+      }
+
+      .stat-label {
+        font-size: 0.82rem;
+        color: #666;
+        margin-top: 4px;
+        letter-spacing: 0.5px;
+      }
+
+      /* ===== SECTION TITLES ===== */
+      .section {
+        padding: 64px 24px;
+      }
+      .section.alt {
+        background: var(--white);
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 42px;
+      }
+
+      .section-title h3 {
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        color: var(--primary);
+        font-weight: 800;
+      }
+
+      .section-title p {
+        color: #666;
+        margin-top: 8px;
+        font-size: 0.95rem;
+      }
+
+      .title-line {
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--secondary), var(--accent));
+        border-radius: 4px;
+        margin: 12px auto 0;
+      }
+
+      /* ===== CARDS KEUNGGULAN ===== */
+      .cards-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 24px;
+      }
+
+      .card {
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 30px 24px;
+        text-align: center;
+        box-shadow: var(--shadow);
+        border-top: 4px solid var(--accent);
+        animation: cardSlideUp 0.6s ease both;
+        transition:
+          transform var(--transition),
+          box-shadow var(--transition);
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 40px rgba(26, 60, 110, 0.2);
+      }
+
+      .card:nth-child(1) {
+        animation-delay: 0.1s;
+        border-color: var(--secondary);
+      }
+      .card:nth-child(2) {
+        animation-delay: 0.2s;
+        border-color: var(--accent);
+      }
+      .card:nth-child(3) {
+        animation-delay: 0.3s;
+        border-color: #27ae60;
+      }
+      .card:nth-child(4) {
+        animation-delay: 0.4s;
+        border-color: #8e44ad;
+      }
+
+      @keyframes cardSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card-icon {
+        font-size: 2.8rem;
+        margin-bottom: 14px;
+        display: block;
+      }
+
+      .card h4 {
+        font-size: 1.05rem;
+        color: var(--primary);
+        margin-bottom: 8px;
+      }
+
+      .card p {
+        font-size: 0.87rem;
+        color: #555;
+        line-height: 1.6;
+      }
+
+      /* ===== VIDEO PROFIL ===== */
+      .video-wrap {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .video-frame-wrap {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 10px 50px rgba(26, 60, 110, 0.25);
+        animation: cardSlideUp 0.8s ease 0.2s both;
+      }
+
+      .video-frame-wrap iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      .video-caption {
+        text-align: center;
+        color: #666;
+        font-size: 0.88rem;
+        margin-top: 14px;
+      }
+
+      /* ===== BERITA ===== */
+      .news-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .news-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        animation: cardSlideUp 0.6s ease both;
+        transition: transform var(--transition);
+      }
+
+      .news-card:hover {
+        transform: translateY(-6px);
+      }
+      .news-card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .news-card:nth-child(2) {
+        animation-delay: 0.25s;
+      }
+      .news-card:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      .news-img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        background: linear-gradient(135deg, #dde4f0, #c5d1e8);
+        display: block;
+      }
+
+      .news-body {
+        padding: 18px;
+      }
+
+      .news-tag {
+        display: inline-block;
+        background: #eef3ff;
+        color: var(--accent);
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 50px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .news-body h4 {
+        font-size: 0.97rem;
+        color: var(--primary);
+        margin-bottom: 8px;
+        line-height: 1.4;
+      }
+
+      .news-body p {
+        font-size: 0.84rem;
+        color: #666;
+        line-height: 1.6;
+      }
+
+      .news-date {
+        font-size: 0.78rem;
+        color: #aaa;
+        margin-top: 10px;
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 700px) {
+        .hero {
+          height: 400px;
+        }
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .stat-item:nth-child(2) {
+          border-right: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="hero-badge">Selamat Datang di Kampus Kami</span>
+        <h2>Bersama Kami, Raih <span>Masa Depan</span> Terbaik</h2>
+        <p>
+          Amik Depati Parbo Kerinci hadir untuk mencetak generasi unggul yang
+          berkarakter, inovatif, dan berdaya saing global sejak 1985.
+        </p>
+        <div class="hero-btns">
+          <a
+            href="prodi.html"
+            class="btn btn-primary"
+            onclick="
+              parent.loadPage(
+                'prodi.html',
+                parent.document.querySelector('[data-key=prodi]'),
+              );
+              return false;
+            "
+          >
+            Lihat Program Studi
+          </a>
+          <a
+            href="kontak.html"
+            class="btn btn-outline"
+            onclick="
+              parent.loadPage(
+                'kontak.html',
+                parent.document.querySelector('[data-key=kontak]'),
+              );
+              return false;
+            "
+          >
+            Hubungi Kami
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== STATS ===== -->
+    <div class="stats-bar">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">40+</div>
+          <div class="stat-label">Tahun Berdiri</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">18</div>
+          <div class="stat-label">Program Studi</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">25K+</div>
+          <div class="stat-label">Alumni Terdaftar</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">200+</div>
+          <div class="stat-label">Dosen & Tenaga Ahli</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== KEUNGGULAN ===== -->
+    <section class="section">
+      <div class="section-title">
+        <h3>Mengapa Memilih Amik Depati Parbo Kerinci?</h3>
+        <div class="title-line"></div>
+        <p>
+          Kami menyediakan lingkungan belajar terbaik untuk perkembangan
+          akademis dan non-akademis Anda.
+        </p>
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <span class="card-icon">🏆</span>
+          <h4>Akreditasi A</h4>
+          <p>
+            Diakui BAN-PT dengan peringkat Unggul untuk seluruh program studi
+            utama.
+          </p>
+        </div>
+        <div class="card">
+          <span class="card-icon">🔬</span>
+          <h4>Lab Modern</h4>
+          <p>
+            Laboratorium berteknologi tinggi dan fasilitas penelitian berstandar
+            internasional.
+          </p>
+        </div>
+        <div class="card">
+          <span class="card-icon">🌍</span>
+          <h4>Kelas Internasional</h4>
+          <p>
+            Program pertukaran mahasiswa dengan 50+ universitas mitra di 20
+            negara.
+          </p>
+        </div>
+        <div class="card">
+          <span class="card-icon">💼</span>
+          <h4>Karir Terjamin</h4>
+          <p>
+            Tingkat serapan kerja alumni mencapai 95% dalam 6 bulan setelah
+            kelulusan.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VIDEO PROFIL ===== -->
+    <section class="section alt">
+      <div class="section-title">
+        <h3>Video Profil Kampus</h3>
+        <div class="title-line"></div>
+        <p>
+          Kenali lebih dekat suasana, fasilitas, dan kehidupan kampus
+          Amik Depati Parbo Kerinci.
+        </p>
+      </div>
+      <div class="video-wrap">
+        <div class="video-frame-wrap">
+          <!-- Video YouTube via iframe (HOTS: integrasi video) -->
+          <iframe
+            src="video/Amik.mp4"
+            title="Video Profil Amik Depati Parbo Kerinci"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+            "
+            allowfullscreen
+          >
+          </iframe>
+        </div>
+        <p class="video-caption">
+          📽️ Video Profil Resmi Amik Depati Parbo Kerinci
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== BERITA TERKINI ===== -->
+    <section class="section">
+      <div class="section-title">
+        <h3>Berita &amp; Pengumuman</h3>
+        <div class="title-line"></div>
+        <p>Informasi terbaru seputar kegiatan kampus dan dunia akademik.</p>
+      </div>
+      <div class="news-grid">
+        <div class="news-card">
+          <div
+            class="news-img"
+            style="
+              background: linear-gradient(135deg, #1a3c6e, #2e86de);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 3rem;
+            "
+          >
+            🎓
+          </div>
+          <div class="news-body">
+            <span class="news-tag">Akademik</span>
+            <h4>PMB Gelombang 2 Resmi Dibuka — Kuota Terbatas!</h4>
+            <p>
+              Pendaftaran mahasiswa baru gelombang Pertama TA 2026/2027 telah resmi
+              dibuka. Daftarkan diri Anda segera.
+            </p>
+            <div class="news-date">📅 15 Juni 2025</div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div
+            class="news-img"
+            style="
+              background: linear-gradient(135deg, #27ae60, #2ecc71);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 3rem;
+            "
+          >
+            🔬
+          </div>
+          <div class="news-body">
+            <span class="news-tag">Penelitian</span>
+            <h4>Tim Riset AMIK Raih Hibah Penelitian Internasional 2025</h4>
+            <p>
+              Tim dosen Fakultas Teknik berhasil meraih hibah senilai 500 juta
+              rupiah dari lembaga riset internasional.
+            </p>
+            <div class="news-date">📅 10 Juni 2025</div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div
+            class="news-img"
+            style="
+              background: linear-gradient(135deg, #8e44ad, #9b59b6);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 3rem;
+            "
+          >
+            🏅
+          </div>
+          <div class="news-body">
+            <span class="news-tag">Prestasi</span>
+            <h4>Mahasiswa AMIK Juara 1 Olimpiade Nasional Informatika</h4>
+            <p>
+              Atas nama kebanggaan kampus, mahasiswa Teknik Informatika meraih
+              medali emas tingkat nasional.
+            </p>
+            <div class="news-date">📅 5 Juni 2025</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
